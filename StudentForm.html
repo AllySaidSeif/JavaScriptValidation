@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Registration Form</title>
+<script>
+function validateForm() {
+  var name = document.forms["registrationForm"]["name"].value;
+  var regNumber = document.forms["registrationForm"]["regNumber"].value;
+  var dob = document.forms["registrationForm"]["dob"].value;
+  var email = document.forms["registrationForm"]["email"].value;
+  var tempAddress = document.forms["registrationForm"]["tempAddress"].value;
+  var permAddress = document.forms["registrationForm"]["permAddress"].value;
+  var phone = document.forms["registrationForm"]["phone"].value;
+
+  
+  if (phone.length !== 10 || isNaN(phone)) {
+    alert("Please enter a valid 10-digit mobile number.");
+    return false;
+  }
+
+  
+  if (!/^[A-Za-z0-9]+$/.test(regNumber)) {
+    alert("Register number should contain only alphabets and numbers.");
+    return false;
+  }
+
+  
+  if (!/^[A-Za-z ]{1,30}$/.test(name)) {
+    alert("Name should contain only alphabets and not exceed 30 characters.");
+    return false;
+  }
+
+  
+  if (!/\S+@\S+\.\S+/.test(email)) {
+    alert("Please enter a valid email address.");
+    return false;
+  }
+
+  
+  if (document.getElementById("sameAddress").checked) {
+    document.getElementById("permAddress").value = tempAddress;
+    document.getElementById("permAddress").disabled = true;
+  }
+
+  return true;
+}
+</script>
+</head>
+<body>
+<h2>Student Registration Form</h2>
+<form name="registrationForm" onsubmit="return validateForm()">
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name" maxlength="30" required><br>
+
+  <label for="regNumber">Register Number:</label><br>
+  <input type="text" id="regNumber" name="regNumber" required><br>
+
+  <label for="dob">Date of Birth:</label><br>
+  <input type="date" id="dob" name="dob" required><br>
+
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" required><br>
+
+  <label for="tempAddress">Temporary Address:</label><br>
+  <input type="text" id="tempAddress" name="tempAddress" required><br>
+
+  <input type="checkbox" id="sameAddress" name="sameAddress">
+  <label for="sameAddress">Permanent address is same as temporary address</label><br>
+
+  <label for="permAddress">Permanent Address:</label><br>
+  <input type="text" id="permAddress" name="permAddress"><br>
+
+  <label for="phone">Phone Number:</label><br>
+  <input type="text" id="phone" name="phone" required><br>
+
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>

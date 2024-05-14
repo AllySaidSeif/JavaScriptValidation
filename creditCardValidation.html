@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Credit Card Validation</title>
+    <script>
+        function validateCreditCardNumber() {
+            const creditCardNumber = document.getElementById("creditCardNumber").value;
+
+            
+            const amexRegex = /^3[47][0-9]{13}$/;
+            const mastercardRegex = /^5[1-5][0-9]{14}$/;
+            const discoverRegex = /^6011[0-9]{12}$/;
+            const dinersClubRegex = /^3(?:0[0-5]|[68][0-9])[0-9]{11}$/;
+            const visaRegex = /^4[0-9]{12}(?:[0-9]{3})?$/;
+
+            if (amexRegex.test(creditCardNumber)) {
+                return true;
+            } else if (mastercardRegex.test(creditCardNumber)) {
+                return true;
+            } else if (discoverRegex.test(creditCardNumber)) {
+                return true;
+            } else if (dinersClubRegex.test(creditCardNumber)) {
+                return true;
+            } else if (visaRegex.test(creditCardNumber)) {
+                return true;
+            } else {
+                document.getElementById("errorMessage").innerText = "Error: Invalid credit card number.";
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Credit Card Validation</h2>
+    <form onsubmit="return validateCreditCardNumber()">
+        <label for="creditCardNumber">Credit Card Number:</label>
+        <input type="text" id="creditCardNumber" name="creditCardNumber" placeholder="Enter your credit card number" required>
+        <br>
+        <span id="errorMessage" style="color: red;"></span>
+        <br>
+        <input type="submit" value="Validate">
+    </form>
+</body>
+</html>
